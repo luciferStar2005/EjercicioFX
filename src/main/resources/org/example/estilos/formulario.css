@@ -1,0 +1,24 @@
+BorderPane{
+    -fx-padding: 0;
+}
+
+VBox{
+    -fx-spacing: 25;
+
+}
+.form{
+    -fx-alignment: center;
+    -fx-max-width: 500px;
+    -fx-max-height: 250px;
+
+}
+
+.titulo, .buttonbar{
+    -fx-alignment: center;
+    -fx-font-size: 25px;
+}
+
+.buttonbar{
+    -fx-padding: 100 0 0 0;
+    -fx-spacing:200;
+}
