@@ -10,6 +10,7 @@ module org.example.taller {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires static lombok;
 
     opens org.example.taller to javafx.fxml;
     exports org.example.taller;

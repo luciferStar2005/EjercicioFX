@@ -2,14 +2,11 @@ BorderPane{
     -fx-padding: 0;
 }
 
-VBox{
-    -fx-spacing: 25;
-
-}
 .form{
     -fx-alignment: center;
     -fx-max-width: 500px;
     -fx-max-height: 250px;
+    -fx-spacing: 25;
 
 }
 
