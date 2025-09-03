@@ -26,7 +26,16 @@ public class FormularioController {
             String direccion=direccionField.getText();
             String correo=correoField.getText();
 
-            Cliente cliente = new Cliente(cedula, nombre, direccion, correo);
+            Cliente cliente = Cliente.builder()
+                    .cedula(cedula)
+                    .nombre(nombre)
+                    .direccion(direccion)
+                    .correo(correo)
+                    .build();
+
+            this.cliente=cliente;
+
+            System.out.println(cliente);
             cliente.valid();
 
             status.setText("se agrego correctamente");

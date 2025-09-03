@@ -3,11 +3,11 @@ package org.example.taller.clases;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
-@Getter
-@Setter
-public class Cliente {
+
+@SuperBuilder
+public class Cliente extends Persona{
     private long cedula;
     private String nombre;
     private String direccion;
