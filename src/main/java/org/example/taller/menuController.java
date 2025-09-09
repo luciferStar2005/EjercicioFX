@@ -1,5 +1,6 @@
 package org.example.taller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,5 +24,9 @@ public class menuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void abrirCapturaProducto() {
+        loadView("capturaProducto.fxml");
     }
 }

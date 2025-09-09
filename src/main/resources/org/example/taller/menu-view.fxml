@@ -7,7 +7,7 @@
         <left>
             <VBox>
                 <Button onAction="#abrirFormulario" prefWidth="150" text="captura cliente" />
-                <Button prefWidth="150" text="captura producto" />
+                <Button prefWidth="150" text="captura producto" onAction="#abrirCapturaProducto" />
             </VBox>
         </left>
     <center>

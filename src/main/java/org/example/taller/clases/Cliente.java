@@ -7,22 +7,25 @@ import lombok.experimental.SuperBuilder;
 
 
 @SuperBuilder
+@Getter
 public class Cliente extends Persona{
-    private long cedula;
-    private String nombre;
-    private String direccion;
-    private String correo;
 
     public void valid() {
-        if (nombre == null || nombre.trim().isEmpty() ||
-                direccion == null || direccion.trim().isEmpty() ||
-                correo == null || correo.trim().isEmpty()) {
-            throw new IllegalArgumentException("Todos los campos son obligatorios.");
+        if (getNombre() == null || getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre es obligatorio.");
         }
-        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+        if (!getNombre().matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
             throw new IllegalArgumentException("El nombre solo debe contener letras y espacios.");
         }
-        if (!correo.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+
+        if (getDireccion() == null || getDireccion().trim().isEmpty()) {
+            throw new IllegalArgumentException("La dirección es obligatoria.");
+        }
+
+        if (getCorreo() == null || getCorreo().trim().isEmpty()) {
+            throw new IllegalArgumentException("El correo es obligatorio.");
+        }
+        if (!getCorreo().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
             throw new IllegalArgumentException("El correo no tiene un formato válido.");
         }
     }

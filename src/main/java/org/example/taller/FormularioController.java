@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.example.taller.clases.Cliente;
+import org.example.taller.clases.ClienteList;
 
 public class FormularioController {
     @FXML private Label status;
@@ -16,15 +17,16 @@ public class FormularioController {
     @FXML private TextField direccionField;
     @FXML private TextField correoField;
 
+    private ClienteList clienteList;
     private Cliente cliente;
 
     @FXML
     protected void ingresar() {
-        try{
+        try {
             long cedula = Long.parseLong(id.getText());
-            String nombre=nombreField.getText();
-            String direccion=direccionField.getText();
-            String correo=correoField.getText();
+            String nombre = nombreField.getText();
+            String direccion = direccionField.getText();
+            String correo = correoField.getText();
 
             Cliente cliente = Cliente.builder()
                     .cedula(cedula)
@@ -33,10 +35,18 @@ public class FormularioController {
                     .correo(correo)
                     .build();
 
-            this.cliente=cliente;
+            this.cliente = cliente;
+            this.cliente.valid();
 
-            System.out.println(cliente);
-            cliente.valid();
+            if (clienteList == null) {
+                clienteList = new ClienteList();
+            }
+
+            clienteList.agregarCliente(cliente);
+
+            for (Cliente c : clienteList.getClientes()) {
+                System.out.println(c.getCedula() + " " + c.getNombre() + " " + c.getDireccion() + " " + c.getCorreo());
+            }
 
             status.setText("se agrego correctamente");
             status.setVisible(true);
@@ -54,22 +64,27 @@ public class FormularioController {
             numero.setVisible(true);
             numero.setManaged(true);
             numero.setText("error: debe ser un numero");
-        }catch(IllegalArgumentException e) {
-            if (nombreField.getText() == null || nombreField.getText().trim().isEmpty()) {
-                mostrarErrorCampo(nombreField, campo1, e.getMessage());
-            } else if (direccionField.getText() == null || direccionField.getText().trim().isEmpty()) {
-                mostrarErrorCampo(direccionField, campo2, e.getMessage());
-            } else if (correoField.getText() == null || correoField.getText().trim().isEmpty()) {
-                mostrarErrorCampo(correoField, campo3, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            String msg = e.getMessage();
+
+            if (msg.contains("nombre")) {
+                mostrarErrorCampo(nombreField, campo1, msg);
+            } else if (msg.contains("dirección")) {
+                mostrarErrorCampo(direccionField, campo2, msg);
+            } else if (msg.contains("correo")) {
+                mostrarErrorCampo(correoField, campo3, msg);
+            } else {
+                numero.setVisible(true);
+                numero.setManaged(true);
+                numero.setText(msg);
             }
         }
     }
 
-    private void mostrarErrorCampo(TextField campo, Label label, String mensaje) {
+    private void mostrarErrorCampo(TextField campo,Label label, String mensaje) {
         label.setVisible(true);
         label.setManaged(true);
         label.setText(mensaje);
         campo.requestFocus();
     }
-
 }

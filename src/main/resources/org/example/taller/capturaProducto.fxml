@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.taller.CapturaProductoController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Label text="Captura de producto" style="-fx-font-size: 24px; -fx-padding: 20px;"/>
+    <VBox spacing="10" style="-fx-padding: 20px;">
+        <TextField fx:id="idField" promptText="ID"/>
+
+        <TextArea promptText="Descripción" fx:id="descripcionField" prefRowCount="3"/>
+
+        <TextField fx:id="precioField" promptText="Precio"/>
+
+        <TextField promptText="Stock" fx:id="stockField"/>
+
+        <CheckBox fx:id="chkExento" layoutX="100" layoutY="140" text="Exento de IVA" />
+        <HBox spacing="10">
+            <Button text="Ingresar" onAction="#capturarProducto"/>
+            <Button text="Actualizar" onAction="#actualizar"/>
+        </HBox>
+        <Label fx:id="status" text="" style="-fx-text-fill: green;" visible="false" managed="false"/>
+    </VBox>
+</VBox>

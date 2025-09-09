@@ -1,16 +1,21 @@
 package org.example.taller.clases;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Getter
+@Setter
 public class Producto {
     private int id;
     private String descripcion;
     private double precio;
     private int cantidad;
+    private Impuesto impuesto;
+    private boolean exento;
 
 
     public void valid(){
